@@ -2,12 +2,11 @@ var JspecRails = {
   init: function(options) {
     JspecRails.options = options || {};
     JspecRails.rails_auth_token = options.authenticity_token;
-    JspecRails.setup_periodical_check();
+    JspecRails.start_periodical_check();
     document.observe('dom:loaded', function(){
-      return function(){ 
-        if(!JspecRails.jspec_run_error)
-          JspecRails.insert_visible_failure_message.delay(0.3);
-      }.delay(0.7); 
+      // hope that this is a long enough wait for the tests to finish
+      // would be nice to have an after finish hook in jspec
+      JspecRails.insert_visible_failure_message.delay(0.7);
     });
   },
   check_for_changed_files: function() {
@@ -19,9 +18,15 @@ var JspecRails = {
   file_changed: function(transport) {
     location.href = location.href;
   },
-  setup_periodical_check: function() {
+  start_periodical_check: function() {
     if(!JspecRails.executor)
       JspecRails.executer = new PeriodicalExecuter(JspecRails.check_for_changed_files, 2);
+  },
+  stop_periodical_check:  function() {
+    if(JspecRails.executor) {
+      JspecRails.executor.stop();
+      delete JspecRails.executor;
+    }
   },
   insert_visible_failure_message: function() {
     if(!$$('.heading .failures em')[0]) {

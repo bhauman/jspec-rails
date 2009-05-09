@@ -34,13 +34,6 @@ class JspecRailsTest < ActiveSupport::TestCase
     assert_equal 'prototype', libs[0]
   end
   
-  should "be able to return the path of a spec file" do
-    path = @jspec_rails.spec_file('jspec_rails_spec.js')
-    assert File.exists?(path)
-    path2 = @jspec_rails.spec_file('jspec_ails.spec.js')
-    assert !File.exists?(path2)
-  end
-
   should "be able to return all spec files" do
     files = @jspec_rails.spec_files
     assert_equal 1, files.length
@@ -49,7 +42,7 @@ class JspecRailsTest < ActiveSupport::TestCase
 
   should "be able to get all watched files for a directory" do
     files = @jspec_rails.watched_files_for_dir('jspec/spec')
-    assert_equal 1, files.length
+    assert_equal 2, files.length
     assert_equal 'jspec_rails_spec.js', File.basename(files[0])
   end 
   

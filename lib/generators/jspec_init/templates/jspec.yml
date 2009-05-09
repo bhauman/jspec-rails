@@ -1,0 +1,13 @@
+required_libs:
+- prototype
+- effects
+- jspec_rails
+watched_dirs:
+- public/javascripts
+- jspec/fixtures
+- jspec/spec
+authorization:
+  rails_envs: 
+   - production
+  username:  jspec
+  password:  jspecpassword

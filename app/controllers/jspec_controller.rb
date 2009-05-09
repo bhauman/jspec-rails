@@ -1,23 +1,22 @@
 class JspecController < ApplicationController
   layout false
 
-  append_view_path('jspec/views_spec')
-  append_view_path('jspec/views_fix')
-
+  append_view_path('app/..')
 
   before_filter :init_jspec_rails
 
   
   def index
     @jspec_rails = JspecRails.new
+    render(:action => 'spec/index')
   end
   
   def spec
-    render(:action => params[:id])
+    render(:action => 'spec/' + params[:id])
   end
   
   def fixture
-    render(:action => params[:id])
+    render(:action => 'fixtures/' + params[:id])
   end
 
   def changed

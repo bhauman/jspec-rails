@@ -22,14 +22,6 @@ class JspecRails
     config['required_libs'] || []
   end
 
-  def fixture_file(filename)
-     File.join(Rails.root, 'jspec', 'fixtures', filename)
-  end
-
-  def spec_file(filename)
-    File.join(Rails.root, 'jspec', 'spec', filename )
-  end
-
   def spec_files
     Dir[File.join(Rails.root, 'jspec', 'spec') + '/*_spec.js' ].collect do |x|
       n = File.basename(x)
