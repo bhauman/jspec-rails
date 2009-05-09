@@ -1,0 +1,2 @@
+module JspecHelper
+end

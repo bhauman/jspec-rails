@@ -1,0 +1,7 @@
+log/*
+TAGS
+db/schema.rb
+*~
+*#
+.#*
+
