@@ -9,13 +9,24 @@ class JspecRails
   def config_file
     File.join(Rails.root, 'jspec', config_filename)    
   end
-
+  
   def load_config
     self.config = YAML.load_file(config_file)
   end
   
   def write_config
     File.open(config_file, 'w') { |io| io.write config.to_yaml }
+  end
+
+  def add_library(lib_name) 
+    return if self.config['required_libs'].member?(lib_name)
+    self.config['required_libs'] << lib_name  
+    self.write_config
+  end
+
+  def remove_library(lib_name) 
+    self.config['required_libs'].delete lib_name  
+    self.write_config
   end
   
   def required_libs

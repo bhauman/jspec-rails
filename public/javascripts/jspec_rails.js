@@ -3,11 +3,6 @@ var JspecRails = {
     JspecRails.options = options || {};
     JspecRails.rails_auth_token = options.authenticity_token;
     JspecRails.start_periodical_check();
-    document.observe('dom:loaded', function(){
-      // hope that this is a long enough wait for the tests to finish
-      // would be nice to have an after finish hook in jspec
-      JspecRails.insert_visible_failure_message.delay(0.7);
-    });
   },
   check_for_changed_files: function() {
     new Ajax.Request('/jspec/changed', {

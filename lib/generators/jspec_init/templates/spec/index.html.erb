@@ -1,31 +1,29 @@
 <html>
   <head>
-    <%= stylesheet_link_tag '/jspec/jspec' %>
-    <%= javascript_include_tag '/jspec/jspec' %>
-    <% @jspec_rails.required_libs.each do |lib| %>
-      <%= javascript_include_tag lib %>      
-    <% end %>
+    <%%= stylesheet_link_tag '/jspec/jspec' %>
+    <%%= javascript_include_tag '/jspec/jspec' %>
+    <%% @jspec_rails.required_libs.each do |lib| %>
+      <%%= javascript_include_tag lib %>      
+    <%% end %>
     <script>
-      JspecRails.init({authenticity_token: '<%= form_authenticity_token %>' })
+      JspecRails.init({authenticity_token: '<%%= form_authenticity_token -%>' })
     </script>
     <script>
-
-     try {
       function runSuites() {
-      JSpec
-  <% @jspec_rails.spec_files.each do |spec| -%>
-      .exec('jspec/spec/<%= spec + '?' + Time.now.strftime('%m%d%y%H%M%S') -%>')
-  <% end -%>
-      .run()
-      .report()
-      }
-     } catch(err) {
-       if(console)
-         console.log(err)
-       JspecRails.set_red();
-       JspecRails.jspec_run_error = true;
-     }
-     
+        try {
+          JSpec
+<%% @jspec_rails.spec_files.each do |spec| -%>
+          .exec('jspec/spec/<%%= spec + '?' + Time.now.strftime('%m%d%y%H%M%S') -%>')
+<%% end -%>
+          .run()
+          .report();
+          JspecRails.insert_visible_failure_message.delay(0.1);
+         } catch(err) {
+           if(console)
+             console.log(err);
+           JspecRails.set_red();
+         }
+       }
     </script>
   </head>
   <body class="jspec" onLoad="runSuites();">

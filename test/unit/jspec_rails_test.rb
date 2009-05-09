@@ -3,16 +3,21 @@ require 'test_helper'
 class JspecRailsTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   def setup
-    @jspec_rails = JspecRails.new('../../#jspec_config_test.yml')
-    FileUtils.cp(File.join(Rails.root, 'jspec', 'jspec_example.yml'), @jspec_rails.config_file)
+    @config_file = '../jspec___config____test.yml'
+    FileUtils.cp(File.join(Rails.root, 'test', 'jspec_fixtures','jspec.yml'), File.join(Rails.root, @config_file))
+    @jspec_rails = JspecRails.new( '../' + @config_file )
   end
-
+  
+  def teardown
+    FileUtils.rm(File.join(Rails.root, @config_file))
+  end
+  
   should "exist in the system" do
     assert @jspec_rails.is_a? JspecRails
   end
 
   should "be able to load yaml file" do
-    @jspec_rails.load_config
+    @jspec_rails.load_config 
     assert_nil @jspec_rails.config['hello']
     assert @jspec_rails.config['watched_dirs']
   end
@@ -27,6 +32,24 @@ class JspecRailsTest < ActiveSupport::TestCase
     assert_not_nil @jspec_rails.config['ouch']  
     assert_equal "oucher", @jspec_rails.config['ouch']  
   end
+
+  should "be able to add a library to the config" do
+    @jspec_rails.load_config
+    @jspec_rails.add_library('tester_account')
+    @jspec_rails.config = nil
+    assert @jspec_rails.load_config
+    assert @jspec_rails.config['required_libs'].member?('tester_account')
+  end
+
+  should "be able to remove a library from the config" do
+    @jspec_rails.load_config
+    @jspec_rails.add_library('tester_lib')
+    assert @jspec_rails.load_config
+
+    @jspec_rails.remove_library('tester_lib')
+    assert @jspec_rails.load_config
+    assert !@jspec_rails.config['required_libs'].member?('tester_lib')
+  end  
   
   should "be able to return all library paths" do
     libs = @jspec_rails.required_libs

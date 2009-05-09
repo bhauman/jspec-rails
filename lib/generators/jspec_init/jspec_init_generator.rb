@@ -1,13 +1,23 @@
-class JspecInitGenerator < Rails::Generator::NamedBase
+class JspecInitGenerator < Rails::Generator::Base
   def manifest
     record do |m|
-      m.directory 'jspec_g'
-      m.directory 'jspec_g/fixtures'
-      m.directory 'jspec_g/spec'      
-      m.template 'spec/index.html.erb', File.join('jspec_g/spec', 'index.html.erb')
-      m.template 'spec/jspec_rails_spec.js', File.join('jspec_g/spec', 'jspec_rails_spec.js')
-      m.template 'fixtures/test_fixture.html.erb', File.join('jspec_g/fixtures', 'test_fixture.html.erb')
-      m.template 'jspec.yml', File.join('jspec_g', 'jspec.yml')                  
+      m.directory 'jspec'
+      m.directory 'jspec/fixtures'
+      m.directory 'jspec/spec'      
+      m.template 'spec/index.html.erb', File.join('jspec/spec', 'index.html.erb')
+      m.template 'spec/jspec_rails_spec.js', File.join('jspec/spec', 'jspec_rails_spec.js')
+      m.template 'fixtures/test_fixture.html.erb', File.join('jspec/fixtures', 'test_fixture.html.erb')
+      m.template 'jspec.yml', File.join('jspec', 'jspec.yml')
+
+      m.directory 'public/jspec'
+      %w(jspec.js jspec.jquery.js jspec.css).each do |f|
+        m.file File.join('jspec/', f), File.join('public/jspec', f)
+      end
+      
+      m.directory 'public/jspec/images'
+      %w(bg.png hr.png sprites.bg.png sprites.png vr.png).each do |f|
+        m.file File.join('jspec/images', f), File.join('public/jspec/images', f)
+      end      
     end
   end
 

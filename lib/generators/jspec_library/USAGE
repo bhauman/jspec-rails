@@ -1,0 +1,15 @@
+Description:
+    Stubs out a new javascript library. Pass the name of the library, 
+    either CamelCased or under_scored.
+
+    This generates a javascript file in public/javascripts/library_name.js, 
+    a spec file in jspec/spec/library_name_spec.js, and a test fixture in 
+    spec/fixtures/library_name.html.erb 
+
+Examples:
+    `./script/generate jspec_library account`
+
+        creates an Account model, test, fixture, and migration:
+            Library:    public/javascripts/account.js
+            Test:       jspec/spec/account_spec.js
+            Fixtures:   jspec/fixtures/account.html.erb
