@@ -84,7 +84,7 @@ The +required_libs+ section lists javascript libraries that are to be included f
 in order.  Items of this list are passed directly to +javascript_include_tag+ Rails helper.
 
 The +watched_dirs+ is a list of directories that are watched for changes.  The directories are all
-relative to [+Rails.root+]
+relative to [+Rails\.root+]
 
 The +authorization+ section has no effect on the behavior of the plugin as of yet.
 
