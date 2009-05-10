@@ -9,17 +9,17 @@ Jspec-rails has the following features:
   to run again - for example you can have Safari, Firefox and IE open and all
   will rerun the tests when a file is changed
 
-* uses a rails controller to deliver spec files and fixtures
-
 * has a built in mechanism for loading html/DOM fixtures into a play area on the 
   page - so you can define separate html snippets for your javascript to run against
-  and load it before you run your tests
+  and load it before you run your tests 
+
+* uses a rails controller to deliver spec files and fixtures
 
 * you can use erb, haml, builder etc. in your fixtures
 
 * you can use erb in your specs
 
-* provides a generator to create a javascript library with it's associated test files
+* provides a generator to stub in a new javascript library with it's associated spec files
 
 = Getting Started
 
@@ -57,11 +57,48 @@ This command also adds a line to +jspec+/+jspec+.+yml+ under required_libs:
    - effects
    - widgeteer  // this line was added
 
-Now you can edit the +jspec+/+spec+/+widgeteer+_+spec+.+js+ and add some specifications 
+Now you can edit the +jspec+/+spec+/+widgeteer_spec+.+js+ and add some specifications 
 for it.  Note that each time you save the file it will refresh and run the specs 
 in the browser (the browser needs to be open first). 
 
-=== Config
+= Writing Specifications
+  
+Please refer to the JSpec documentation at:
+
+  http://github.com/visionmedia/jspec
+
+= Fixtures
+
+Fixtures in terms of testing Javascript are files that are loaded into the DOM to run 
+javascript against.
+
+Fixtures are placed in the +jspec+/+fixtures+ directory and can easly be loaded into the 
+page.  For example if you have a fixture named +widgeteer+.+html+.+erb+ in the +jspec+/+fixtures+
+directory, you can load it into your environment from your javascript tests with a call to:
+
+  JspecRails.load_fixture('widgeteer');
+
+When you load another fixture the previous one will be replaced.  But if you want to explicitly unload
+the current fixture do this:
+
+  JspecRails.clear_fixture();
+
+Fixtures are loaded into the play area. 
+
+= Play Area
+
+The +play_area+ is a hidden dom element where fixtures are loaded into. The current thinking 
+is that it holds one fixture at a time and its contents are replaced by the next fixture loaded.
+
+You can access the fixture from your javascript specs with a call to
+
+  JspecRails.play_area
+
+You can access elements in your fixture through the +play_area+ using the *Prototype*.*js* +select+() method
+
+  JspecRails.play_area.select('#id_of_element_inside_my_fixture')
+
+= Config
 
 The jspec-rails configuration file can be found at +jspec+/+jspec+.+yml+. The generated
 config should look something like this:
@@ -83,7 +120,7 @@ config should look something like this:
 The +required_libs+ section lists javascript libraries that are to be included for the test
 in order.  Items of this list are passed directly to +javascript_include_tag+ Rails helper.
 
-The +watched_dirs+ is a list of directories that are watched for changes.  The directories are all
+The +watched_dirs+ section is a list of directories that are watched for changes.  The directories are all
 relative to +Rails+.+root+
 
 The +authorization+ section has no effect on the behavior of the plugin as of yet.
