@@ -1,5 +1,4 @@
-Jspec-rails
-===========
+= Jspec-rails - rails integration for JSpec
 
 Jspec-rails is a plugin that helps integrate the javascript BDD framework 
 Jspec into Rails.
@@ -16,15 +15,15 @@ Jspec-rails has the following features:
 * you can use erb in your specs
 * provides a generator to create a javascript library with it's associated test files
 
-Getting Started
-===============
+=== Getting Started
 
 
 
 
 
-Example
-=======
+
+=== Example
+
 
 Example goes here.
 
