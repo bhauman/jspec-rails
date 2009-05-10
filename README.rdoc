@@ -131,6 +131,8 @@ As of now this plugin is implemented as an Engine and so requires Rails 2.3.  Th
 +jspec_controller+.+rb+ file in the +app+ directory of the plugin is probably the only file that
 requires Engine functionality to be found.  There are various ways to work around this. 
 
+As of now the JSpec javascript library is bundled into this plugin for simplicity.
+
 == Notes 
 
 This plugin can easily be extended to work with the Scriptaculous testing framework.
