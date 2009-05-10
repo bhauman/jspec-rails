@@ -1,6 +1,6 @@
 = JSpec-Rails - Rails integration for JSpec
 
-*JSpec-Rails* is a plugin that helps integrate the javascript BDD framework 
+*JSpec*-*Rails* is a plugin that helps integrate the javascript BDD framework 
 Jspec into Rails.
 
 Jspec-rails has the following features:
@@ -15,7 +15,7 @@ Jspec-rails has the following features:
   page - so you can define separate html snippets for your javascript to run against
   and load it before you run your tests
 
-* you can use erb/haml/builder in your fixtures
+* you can use erb, haml, builder etc. in your fixtures
 
 * you can use erb in your specs
 
@@ -50,20 +50,20 @@ This will create the following files:
   Specification File:   jspec/spec/widgeteer_spec.js
   Sample Fixture:       jspec/fixtures/widgeteer.html.erb
 
-This command also adds a line to +jspec/jspec.yml+ under required_libs:
+This command also adds a line to +jspec+/+jspec+.+yml+ under required_libs:
 
   required_libs:
    - prototype
    - effects
    - widgeteer  // this line was added
 
-Now you can edit the +jspec/spec/widgeteer_spec.js+ and add some specifications 
+Now you can edit the +jspec+/+spec+/+widgeteer+_+spec+.+js+ and add some specifications 
 for it.  Note that each time you save the file it will refresh and run the specs 
 in the browser (the browser needs to be open first). 
 
 === Config
 
-The jspec-rails configuration file can be found at +jspec/jspec.yml+. The generated
+The jspec-rails configuration file can be found at +jspec+/+jspec+.+yml+. The generated
 config should look something like this:
 
   required_libs:
@@ -91,7 +91,7 @@ The +authorization+ section has no effect on the behavior of the plugin as of ye
 == Requirements
 
 As of now this plugin is implemented as an Engine and so requires Rails 2.3.  That being said the 
-+jspec_controller.rb+ file in the +app+ directory of the plugin is probably the only file that
++jspec_controller+.+rb+ file in the +app+ directory of the plugin is probably the only file that
 requires Engine functionality to be found.  There are various ways to work around this. 
 
 == Notes 
