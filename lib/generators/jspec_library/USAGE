@@ -9,7 +9,7 @@ Description:
 Examples:
     `./script/generate jspec_library account`
 
-        creates an Account model, test, fixture, and migration:
+        creates the following files
             Library:    public/javascripts/account.js
             Test:       jspec/spec/account_spec.js
             Fixtures:   jspec/fixtures/account.html.erb

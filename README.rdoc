@@ -17,6 +17,43 @@ Jspec-rails has the following features:
 
 === Getting Started
 
+Install the plugin:
+ 
+  ./script/plugin install git://github.com/bhauman/jspec-rails.git
+
+Initialize your app:
+
+  ./script/generate jspec_init
+
+Now start or restart your app and navigate to it the jspec controller. 
+For example if you are running webrick on port 3000 navigate to 
+
+  http://localhost:3000/jspec
+
+You should see the self tests for the jspec_rails.js library run (and pass).
+
+=== Using jspec-rails
+
+Let's generate a new javascript library to test.  
+
+  ./script/generate jspec_library widgeteer
+
+This will create the following files:
+
+  Javascript Library:   public/javascripts/widgeteer.js
+  Specification File:   jspec/spec/widgeteer_spec.js
+  Sample Fixture:       jspec/fixtures/widgeteer.html.erb
+
+This command also adds a line to jspec/jspec.yml under required_libs:
+
+  required_libs:
+   - prototype
+   - effects
+   - widgeteer  // this line was added
+
+Now you can open the jspec/spec/widgeteer_spec.js and add some specifications 
+for it.  Note that each time you save the file it will refresh and run the specs 
+in the browser (the browser needs to be open first). 
 
 
 
