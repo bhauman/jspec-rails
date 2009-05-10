@@ -1,7 +1,7 @@
 = JSpec-Rails - Rails integration for JSpec
 
 *JSpec*-*Rails* is a plugin that helps integrate the javascript BDD framework 
-"Jspec":http://github.com/visionmedia/jspec into Rails.
+http://github.com/visionmedia/jspec">JSpec into Rails.
 
 Jspec-rails has the following features:
 
