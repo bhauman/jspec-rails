@@ -1,38 +1,44 @@
-= Jspec-rails - rails integration for JSpec
+= JSpec-Rails - Rails integration for JSpec
 
-Jspec-rails is a plugin that helps integrate the javascript BDD framework 
+*JSpec-Rails* is a plugin that helps integrate the javascript BDD framework 
 Jspec into Rails.
 
 Jspec-rails has the following features:
+
 * detects file changes and refreshes the browser to cause the specifications
   to run again - for example you can have Safari, Firefox and IE open and all
   will rerun the tests when a file is changed
-* uses a rails controller to delever spec files and fixtures
+
+* uses a rails controller to deliver spec files and fixtures
+
 * has a built in mechanism for loading html/DOM fixtures into a play area on the 
   page - so you can define separate html snippets for your javascript to run against
   and load it before you run your tests
+
 * you can use erb/haml/builder in your fixtures
+
 * you can use erb in your specs
+
 * provides a generator to create a javascript library with it's associated test files
 
-=== Getting Started
+= Getting Started
 
-Install the plugin:
+==== Install the plugin:
  
   ./script/plugin install git://github.com/bhauman/jspec-rails.git
 
-Initialize your app:
+==== Initialize your app:
 
   ./script/generate jspec_init
 
 Now start or restart your app and navigate to it the jspec controller. 
-For example if you are running webrick on port 3000 navigate to 
+For example if you are running webrick on port 3000 navigate to:
 
   http://localhost:3000/jspec
 
 You should see the self tests for the jspec_rails.js library run (and pass).
 
-=== Using jspec-rails
+= Using jspec-rails
 
 Let's generate a new javascript library to test.  
 
@@ -44,26 +50,53 @@ This will create the following files:
   Specification File:   jspec/spec/widgeteer_spec.js
   Sample Fixture:       jspec/fixtures/widgeteer.html.erb
 
-This command also adds a line to jspec/jspec.yml under required_libs:
+This command also adds a line to +jspec/jspec.yml+ under required_libs:
 
   required_libs:
    - prototype
    - effects
    - widgeteer  // this line was added
 
-Now you can open the jspec/spec/widgeteer_spec.js and add some specifications 
+Now you can edit the +jspec/spec/widgeteer_spec.js+ and add some specifications 
 for it.  Note that each time you save the file it will refresh and run the specs 
 in the browser (the browser needs to be open first). 
 
+=== Config
 
+The jspec-rails configuration file can be found at +jspec/jspec.yml+. The generated
+config should look something like this:
 
+  required_libs:
+  - prototype
+  - effects
+  - jspec_rails
+  watched_dirs:
+  - public/javascripts
+  - jspec/fixtures
+  - jspec/spec
+  authorization:
+    rails_envs: 
+    - production
+    username:  jspec
+    password:  jspecpassword
 
+The +required_libs+ section lists javascript libraries that are to be included for the test
+in order.  Items of this list are passed directly to +javascript_include_tag+ Rails helper.
 
-=== Example
+The +watched_dirs+ is a list of directories that are watched for changes.  The directories are all
+relative to +Rails.root+
 
+The +authorization+ section has no effect on the behavior of the plugin as of yet.
 
-Example goes here.
+== Requirements
 
+As of now this plugin is implemented as an Engine and so requires Rails 2.3.  That being said the 
++jspec_controller.rb+ file in the +app+ directory of the plugin is probably the only file that
+requires Engine functionality to be found.  There are various ways to work around this. 
+
+== Notes 
+
+This plugin can easily be extended to work with the Scriptaculous testing framework.
 
 == License
 
