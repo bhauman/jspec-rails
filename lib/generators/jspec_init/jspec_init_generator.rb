@@ -25,8 +25,4 @@ class JspecInitGenerator < Rails::Generator::Base
     end
   end
 
-  protected
-    def banner
-      "Usage: #{$0} #{spec.name} ModelName [field:type, field:type]"
-    end
 end

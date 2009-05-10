@@ -3,13 +3,13 @@ require 'test_helper'
 class JspecRailsTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   def setup
-    @config_file = '../jspec___config____test.yml'
-    FileUtils.cp(File.join(Rails.root, 'test', 'jspec_fixtures','jspec.yml'), File.join(Rails.root, @config_file))
-    @jspec_rails = JspecRails.new( '../' + @config_file )
+    @config_file = '______jspec___config____test.yml'
+    FileUtils.cp(File.join(File.dirname(__FILE__), '../jspec_fixtures', 'jspec.yml'), File.join(Rails.root, 'jspec', @config_file))
+    @jspec_rails = JspecRails.new( @config_file )
   end
   
   def teardown
-    FileUtils.rm(File.join(Rails.root, @config_file))
+    FileUtils.rm(File.join(Rails.root,'jspec', @config_file))
   end
   
   should "exist in the system" do
