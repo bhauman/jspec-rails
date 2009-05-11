@@ -19,7 +19,7 @@ class JspecInitGenerator < Rails::Generator::Base
       end
       
       m.directory 'public/jspec/images'
-      %w(bg.png hr.png sprites.bg.png sprites.png vr.png).each do |f|
+      %w(loading.gif bg.png hr.png sprites.bg.png sprites.png vr.png).each do |f|
         m.file File.join('jspec/images', f), File.join('public/jspec/images', f)
       end      
     end

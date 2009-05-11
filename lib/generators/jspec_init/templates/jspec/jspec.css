@@ -1,6 +1,5 @@
 body.jspec {
   margin: 45px 0;
-  text-align: center;
   font: 12px "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
   background: #efefef url(images/bg.png) top left repeat-x;
 }
@@ -24,6 +23,12 @@ body.jspec {
   height: 15px;
   background: url(images/sprites.bg.png) bottom left no-repeat;
 }
+#jspec .loading {
+  margin-top: -45px;
+  width: 1008px;
+  height: 80px;
+  background: url(images/loading.gif) 50% 50% no-repeat;
+}
 #jspec-title {
   position: relative;
   top: 35px;
@@ -32,6 +37,7 @@ body.jspec {
   font-size: 22px;
   font-weight: normal;
   background: url(images/sprites.png) 0 -126px no-repeat;
+  text-align: center;
 }
 #jspec-title em {
   font-size: 10px;
@@ -68,7 +74,6 @@ body.jspec {
   color: #FA1616;
 }
 #jspec-report table {
-  width: 100%;
   font-size: 11px;
   border-collapse: collapse;
 }
@@ -76,6 +81,16 @@ body.jspec {
   padding: 8px;
   text-indent: 30px;
   color: #7B8D9B;
+}
+#jspec-report tr.body {
+  display: none;
+}
+#jspec-report tr.body pre {
+  margin: 0;
+  padding: 0 0 5px 25px;
+}
+#jspec-report tr:not(.body):hover + tr.body {
+  display: block;
 }
 #jspec-report tr td:first-child em {
   font-style: normal;
