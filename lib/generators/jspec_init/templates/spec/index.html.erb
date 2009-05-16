@@ -12,9 +12,9 @@
       function runSuites() {
         try {
           JSpec
-<% @jspec_rails.spec_files.each do |spec| -%>
-          .exec('jspec/spec/<%= spec + '?' + Time.now.strftime('%m%d%y%H%M%S') -%>')
-<% end -%>
+          <%- @jspec_spec_files.each do |spec| -%>
+          .exec('/jspec/spec/<%= spec + '?' + Time.now.strftime('%m%d%y%H%M%S') -%>')
+          <%- end -%>
           .run()
           .report();
           JspecRails.insert_visible_failure_message.delay(0.1);

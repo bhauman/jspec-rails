@@ -5,10 +5,14 @@ class JspecController < ApplicationController
 
   before_filter :init_jspec_rails
 
-  
   def index
-    @jspec_rails = JspecRails.new
+    @jspec_spec_files = @jspec_rails.spec_files
     render(:action => 'spec/index')
+  end
+  
+  def only
+    @jspec_spec_files = @jspec_rails.get_single_spec(params[:id])
+    render(:action => 'spec/index')    
   end
   
   def spec

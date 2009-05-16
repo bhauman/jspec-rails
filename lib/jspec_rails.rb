@@ -33,6 +33,10 @@ class JspecRails
     config['required_libs'] || []
   end
 
+  def get_single_spec(spec_abbrev)
+    self.spec_files.select { |x| x == spec_abbrev + '_spec.js' }
+  end
+
   def spec_files
     Dir[File.join(Rails.root, 'jspec', 'spec') + '/*_spec.js' ].collect do |x|
       n = File.basename(x)
